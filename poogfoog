@@ -1,12 +1,799 @@
---[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.2.5) ~  Much Love, Ferib 
+--GUI
 
-]]--
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Energy Assault GUI  by: Poog Foog", "DarkTheme")
 
-local Library=loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))();local Window=Library.CreateLib("Energy Assault GUI  by: Poog Foog","DarkTheme");local Main=Window:NewTab("Main");local MainSection=Main:NewSection("Main");local Player=Window:NewTab("Player");local PlayerSection=Player:NewSection("Player");local Visuals=Window:NewTab("Visuals");local VisualsSection=Visuals:NewSection("Visuals");MainSection:NewButton("Silent aim","ButtonInfo",function()local FlatIdent_4E001=0;while true do if (FlatIdent_4E001==1) then loadstring(game:HttpGet("https://raw.githubusercontent.com/Spoorloos/scripts/main/energy_assault_silent_aim.lua"))();break;end if (FlatIdent_4E001==0) then getgenv().fov=math.huge;getgenv().hitpart="Head";FlatIdent_4E001=1;end end end);MainSection:NewButton("WallBang","ButtonInfo",function()workspace.map.otherparts.Parent=workspace.map.bulletsgothrough;end);PlayerSection:NewButton(" Undetected Speed gui","ButtonInfo",function()local FlatIdent_206D9=0;local s_rs;local l_plr;local l_humrp;local l_hum;local resp_con;local dnec;local speed_amnt;local ui;local w;local m;local t;local s;while true do if (FlatIdent_206D9==4) then m:NewLabel();m:NewLabel("Made by Poog foog");s.OnValueChanged:Connect(function(v)speed_amnt=v;end);do local FlatIdent_8690=0;local a;local b;while true do if (0==FlatIdent_8690) then a,b=nil;t.OnToggle:Connect(function(t)if t then local FlatIdent_90FA5=0;while true do if (FlatIdent_90FA5==0) then a=dnec(l_humrp.Changed);b=dnec(l_humrp:GetPropertyChangedSignal("CFrame"));FlatIdent_90FA5=1;end if (FlatIdent_90FA5==1) then s_rs:BindToRenderStep("speed",2000,function(dt)l_humrp.CFrame=l_humrp.CFrame + (l_hum.MoveDirection * dt * 5 * speed_amnt) ;end);break;end end else local FlatIdent_71618=0;while true do if (FlatIdent_71618==1) then for i,v in ipairs(b) do v:Enable();end break;end if (FlatIdent_71618==0) then s_rs:UnbindFromRenderStep("speed");for i,v in ipairs(a) do v:Enable();end FlatIdent_71618=1;end end end end);break;end end end FlatIdent_206D9=5;end if (FlatIdent_206D9==2) then ui=loadstring(game:HttpGet("https://raw.githubusercontent.com/topitbopit/rblx/main/ui-stuff/jeff_2.lua"))();ui:SetColors("streamline");w=ui:NewWindow("speed",250,200);m=w:NewMenu("speed");FlatIdent_206D9=3;end if (FlatIdent_206D9==0) then s_rs=game:GetService("RunService");l_plr=game:GetService("Players").LocalPlayer;l_humrp=l_plr.Character and l_plr.Character:FindFirstChild("HumanoidRootPart") ;l_hum=l_plr.Character and l_plr.Character:FindFirstChild("Humanoid") ;FlatIdent_206D9=1;end if (FlatIdent_206D9==3) then t=m:NewToggle("toggle speed");s=m:NewSlider("speed amount",0.3,20,5);t:SetTooltip("made special for bwiz");s:SetTooltip("speedhack speed");FlatIdent_206D9=4;end if (FlatIdent_206D9==5) then ui.Exiting:Connect(function()local FlatIdent_2DA53=0;while true do if (FlatIdent_2DA53==0) then for i,v in ipairs(ui:GetAllToggles()) do if (v:IsEnabled()) then v:Disable();end end resp_con:Disconnect();break;end end end);ui:Ready();break;end if (FlatIdent_206D9==1) then resp_con=l_plr.CharacterAdded:Connect(function(c)local FlatIdent_2A57=0;while true do if (FlatIdent_2A57==0) then l_humrp=c:WaitForChild("HumanoidRootPart",3);l_hum=c:WaitForChild("Humanoid",3);break;end end end);dnec=nil;dnec=function(signal)local s={};for _,con in ipairs(getconnections(signal)) do local FlatIdent_4829D=0;local func;while true do if (FlatIdent_4829D==0) then func=con.Function;if (func and islclosure(func)) then if  not is_synapse_function(func) then s[ #s + 1 ]=con;con:Disable();end end break;end end end return s;end;speed_amnt=5;FlatIdent_206D9=2;end end end);MainSection:NewButton("Aimbot","ButtonInfo",function()local dwCamera=workspace.CurrentCamera;local dwRunService=game:GetService("RunService");local dwUIS=game:GetService("UserInputService");local dwEntities=game:GetService("Players");local dwLocalPlayer=dwEntities.LocalPlayer;local dwMouse=dwLocalPlayer:GetMouse();local settings={Aimbot=true,Aiming=false,Aimbot_AimPart="Head",Aimbot_TeamCheck=true,Aimbot_Draw_FOV=true,Aimbot_FOV_Radius=300,Aimbot_FOV_Color=Color3.fromRGB(255,0,255)};local fovcircle=Drawing.new("Circle");fovcircle.Visible=settings.Aimbot_Draw_FOV;fovcircle.Radius=settings.Aimbot_FOV_Radius;fovcircle.Color=settings.Aimbot_FOV_Color;fovcircle.Thickness=2;fovcircle.Filled=false;fovcircle.Transparency=0.5;fovcircle.Position=Vector2.new(dwCamera.ViewportSize.X/2 ,dwCamera.ViewportSize.Y/2 );dwUIS.InputBegan:Connect(function(i)if (i.UserInputType==Enum.UserInputType.MouseButton2) then settings.Aiming=true;end end);dwUIS.InputEnded:Connect(function(i)if (i.UserInputType==Enum.UserInputType.MouseButton2) then settings.Aiming=false;end end);dwRunService.RenderStepped:Connect(function()local dist=math.huge;local closest_char=nil;if settings.Aiming then local FlatIdent_AE8E=0;while true do if (FlatIdent_AE8E==0) then for i,v in next,dwEntities:GetChildren() do if ((v~=dwLocalPlayer) and v.Character and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and (v.Character:FindFirstChild("Humanoid").Health>0)) then if (((settings.Aimbot_TeamCheck==true) and (v.Team~=dwLocalPlayer.Team)) or (settings.Aimbot_TeamCheck==false)) then local char=v.Character;local char_part_pos,is_onscreen=dwCamera:WorldToViewportPoint(char[settings.Aimbot_AimPart].Position);if is_onscreen then local mag=(Vector2.new(dwMouse.X,dwMouse.Y) -Vector2.new(char_part_pos.X,char_part_pos.Y)).Magnitude;if ((mag<dist) and (mag<settings.Aimbot_FOV_Radius)) then dist=mag;closest_char=char;end end end end end if ((closest_char~=nil) and closest_char:FindFirstChild("HumanoidRootPart") and closest_char:FindFirstChild("Humanoid") and (closest_char:FindFirstChild("Humanoid").Health>0)) then dwCamera.CFrame=CFrame.new(dwCamera.CFrame.Position,closest_char[settings.Aimbot_AimPart].Position);end break;end end end end);end);VisualsSection:NewButton("FPS boost","ButtonInfo",function()local FlatIdent_4F0A4=0;local decalsyeeted;local g;local w;local l;local t;while true do if (1==FlatIdent_4F0A4) then t=w.Terrain;t.WaterWaveSize=0;t.WaterWaveSpeed=0;t.WaterReflectance=0;FlatIdent_4F0A4=2;end if (FlatIdent_4F0A4==0) then decalsyeeted=true;g=game;w=g.Workspace;l=g.Lighting;FlatIdent_4F0A4=1;end if (FlatIdent_4F0A4==3) then settings().Rendering.QualityLevel="Level01";for i,v in pairs(g:GetDescendants()) do if (v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart")) then local FlatIdent_2CE4C=0;while true do if (FlatIdent_2CE4C==0) then v.Material="Plastic";v.Reflectance=0;break;end end elseif (v:IsA("Decal") or (v:IsA("Texture") and decalsyeeted)) then v.Transparency=1;elseif (v:IsA("ParticleEmitter") or v:IsA("Trail")) then v.Lifetime=NumberRange.new(0);elseif v:IsA("Explosion") then v.BlastPressure=1;v.BlastRadius=1;elseif (v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke")) then v.Enabled=false;elseif v:IsA("MeshPart") then local FlatIdent_2B640=0;while true do if (FlatIdent_2B640==1) then v.TextureID=10385902758728956;break;end if (FlatIdent_2B640==0) then v.Material="Plastic";v.Reflectance=0;FlatIdent_2B640=1;end end end end for i,e in pairs(l:GetChildren()) do if (e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect")) then e.Enabled=false;end end break;end if (FlatIdent_4F0A4==2) then t.WaterTransparency=0;l.GlobalShadows=false;l.FogEnd=8999999488;l.Brightness=0;FlatIdent_4F0A4=3;end end end);local Settings={rewrittenmain={Enabled=true,Key="q",DOT=true,AIRSHOT=true,NOTIF=false,AUTOPRED=false,FOV=math.huge,RESOVLER=false}};local SelectedPart="HumanoidRootPart";local Prediction=true;local PredictionValue=0.1225;local AnchorCount=0;local MaxAnchor=50;local CC=game:GetService("Workspace").CurrentCamera;local Plr;local enabled=false;local accomidationfactor=0.115;local mouse=game.Players.LocalPlayer:GetMouse();local placemarker=Instance.new("Part",game.Workspace);makemarker=function(Parent,Adornee,Color,Size,Size2)local e=Instance.new("BillboardGui",Parent);e.Name="PP";e.Adornee=Adornee;e.Size=UDim2.new(Size,Size2,Size,Size2);e.AlwaysOnTop=Settings.rewrittenmain.DOT;local a=Instance.new("Frame",e);if (Settings.rewrittenmain.DOT==true) then a.Size=UDim2.new(1,0,1,0);else a.Size=UDim2.new(0,0,0,0);end if (Settings.rewrittenmain.DOT==true) then local FlatIdent_2BC1E=0;while true do if (FlatIdent_2BC1E==0) then a.Transparency=0;a.BackgroundTransparency=0;break;end end else local FlatIdent_68D53=0;while true do if (FlatIdent_68D53==0) then a.Transparency=1;a.BackgroundTransparency=1;break;end end end a.BackgroundColor3=Color;local g=Instance.new("UICorner",a);if (Settings.rewrittenmain.DOT==false) then g.CornerRadius=UDim.new(0,0);else g.CornerRadius=UDim.new(1,1);end return e;end;VisualsSection:NewButton("Tracers","ButtonInfo",function()_G.TeamCheck=false;_G.Tracers=true;local lp=game.Players.LocalPlayer;local camera=game:GetService("Workspace").CurrentCamera;local CurrentCamera=workspace.CurrentCamera;local worldToViewportPoint=CurrentCamera.worldToViewportPoint;for i,v in pairs(game.Players:GetChildren()) do local Tracer=Drawing.new("Line");Tracer.Visible=false;Tracer.Color=Color3.new(255,0,255);Tracer.Thickness=2;Tracer.Transparency=1;traces=function()game:GetService("RunService").RenderStepped:Connect(function()if ((v.Character~=nil) and (v.Character:FindFirstChild("Humanoid")~=nil) and (v.Character:FindFirstChild("HumanoidRootPart")~=nil) and (v~=lp) and (v.Character.Humanoid.Health>0)) then local Vector,OnScreen=camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position);if OnScreen then local FlatIdent_73F15=0;while true do if (FlatIdent_73F15==1) then if (_G.TeamCheck and (v.TeamColor==lp.TeamColor)) then Tracer.Visible=false;else Tracer.Visible=true;end break;end if (0==FlatIdent_73F15) then Tracer.From=Vector2.new(camera.ViewportSize.X/2 ,camera.ViewportSize.Y/2 );Tracer.To=Vector2.new(Vector.X,Vector.Y);FlatIdent_73F15=1;end end else Tracer.Visible=false;end else Tracer.Visible=false;end if (_G.Tracers==false) then Tracers.Visible=false;end end);end;coroutine.wrap(traces)();end game.Players.PlayerAdded:Connect(function()local FlatIdent_5590C=0;local Tracer;while true do if (FlatIdent_5590C==2) then Tracer.Transparency=2;traces=function()game:GetService("RunService").RenderStepped:Connect(function()if ((v.Character~=nil) and (v.Character:FindFirstChild("Humanoid")~=nil) and (v.Character:FindFirstChild("HumanoidRootPart")~=nil) and (v~=lp) and (v.Character.Humanoid.Health>0)) then local FlatIdent_82A26=0;local Vector;local OnScreen;while true do if (FlatIdent_82A26==0) then Vector,OnScreen=camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position);if OnScreen then local FlatIdent_715FC=0;while true do if (FlatIdent_715FC==1) then if (_G.TeamCheck and (v.TeamColor==lp.TeamColor)) then Tracer.Visible=false;else Tracer.Visible=true;end break;end if (0==FlatIdent_715FC) then Tracer.From=Vector2.new(camera.ViewportSize.X/2 ,camera.ViewportSize.Y/2 );Tracer.To=Vector2.new(Vector.X,Vector.Y);FlatIdent_715FC=1;end end else Tracer.Visible=false;end break;end end else Tracer.Visible=false;end if (_G.Tracers==false) then Tracers.Visible=false;end end);end;FlatIdent_5590C=3;end if (FlatIdent_5590C==0) then Tracer=Drawing.new("Line");Tracer.Visible=false;FlatIdent_5590C=1;end if (FlatIdent_5590C==1) then Tracer.Color=Color3.new(255,0,0);Tracer.Thickness=2;FlatIdent_5590C=2;end if (FlatIdent_5590C==3) then coroutine.wrap(traces)();break;end end end);end);VisualsSection:NewButton("ESP","ButtonInfo",function()game:GetService("StarterGui"):SetCore("SendNotification",{Title="Made By:",Text="Poog Foog",Icon="",Duration=200});local settings={defaultcolor=Color3.fromRGB(255,0,255),teamcheck=true,teamcolor=false};local runService=game:GetService("RunService");local players=game:GetService("Players");local localPlayer=players.LocalPlayer;local camera=workspace.CurrentCamera;local newVector2,newColor3,newDrawing=Vector2.new,Color3.new,Drawing.new;local tan,rad=math.tan,math.rad;local round=function(...)local FlatIdent_38AE3=0;local a;while true do if (FlatIdent_38AE3==1) then return unpack(a);end if (FlatIdent_38AE3==0) then a={};for i,v in next,table.pack(...) do a[i]=math.round(v);end FlatIdent_38AE3=1;end end end;local wtvp=function(...)local FlatIdent_81204=0;local a;local b;while true do if (FlatIdent_81204==0) then a,b=camera.WorldToViewportPoint(camera,...);return newVector2(a.X,a.Y),b,a.Z;end end end;local espCache={};local function createEsp(player)local FlatIdent_5F7F9=0;local drawings;while true do if (FlatIdent_5F7F9==2) then drawings.box.ZIndex=2;drawings.boxoutline=newDrawing("Square");drawings.boxoutline.Thickness=5;FlatIdent_5F7F9=3;end if (FlatIdent_5F7F9==0) then drawings={};drawings.box=newDrawing("Square");drawings.box.Thickness=1;FlatIdent_5F7F9=1;end if (FlatIdent_5F7F9==1) then drawings.box.Filled=false;drawings.box.Color=settings.defaultcolor;drawings.box.Visible=false;FlatIdent_5F7F9=2;end if (FlatIdent_5F7F9==4) then drawings.boxoutline.ZIndex=0.5;espCache[player]=drawings;break;end if (FlatIdent_5F7F9==3) then drawings.boxoutline.Filled=false;drawings.boxoutline.Color=newColor3();drawings.boxoutline.Visible=false;FlatIdent_5F7F9=4;end end end local function removeEsp(player)if rawget(espCache,player) then for _,drawing in next,espCache[player] do drawing:Remove();end espCache[player]=nil;end end local function updateEsp(player,esp)local FlatIdent_F179=0;local character;while true do if (FlatIdent_F179==0) then character=player and player.Character ;if character then local cframe=character:GetModelCFrame();local position,visible,depth=wtvp(cframe.Position);esp.box.Visible=visible;esp.boxoutline.Visible=visible;if (cframe and visible) then local FlatIdent_71F68=0;local scaleFactor;local width;local height;local x;local y;while true do if (FlatIdent_71F68==0) then scaleFactor=(1/(depth * tan(rad(camera.FieldOfView/2 )) * 2)) * 1000 ;width,height=round(4 * scaleFactor ,5 * scaleFactor );FlatIdent_71F68=1;end if (FlatIdent_71F68==2) then esp.box.Position=newVector2(round(x-(width/2) ,y-(height/2) ));esp.box.Color=(settings.teamcolor and player.TeamColor.Color) or settings.defaultcolor ;FlatIdent_71F68=3;end if (FlatIdent_71F68==1) then x,y=round(position.X,position.Y);esp.box.Size=newVector2(width,height);FlatIdent_71F68=2;end if (3==FlatIdent_71F68) then esp.boxoutline.Size=esp.box.Size;esp.boxoutline.Position=esp.box.Position;break;end end end else local FlatIdent_2A0E8=0;while true do if (0==FlatIdent_2A0E8) then esp.box.Visible=false;esp.boxoutline.Visible=false;break;end end end break;end end end for _,player in next,players:GetPlayers() do if (player~=localPlayer) then createEsp(player);end end players.PlayerAdded:Connect(function(player)createEsp(player);end);players.PlayerRemoving:Connect(function(player)removeEsp(player);end);runService:BindToRenderStep("esp",Enum.RenderPriority.Camera.Value,function()for player,drawings in next,espCache do local FlatIdent_2ABA9=0;while true do if (0==FlatIdent_2ABA9) then if (settings.teamcheck and (player.Team==localPlayer.Team)) then continue;end if (drawings and (player~=localPlayer)) then updateEsp(player,drawings);end break;end end end end);end);VisualsSection:NewButton("Skeletons","ButtonInfo",function()game:GetService("StarterGui"):SetCore("SendNotification",{Title="Made By:",Text="Poog Foog",Icon="",Duration=200});local camera=workspace.CurrentCamera;local entities=game:GetService("Players");local localplayer=entities.LocalPlayer;local runservice=game:GetService("RunService");local esp_settings={enabled=true,skel=true,skel_col=Color3.fromRGB(204,0,0)};local function draw(player,character)local skel_head=Drawing.new("Line");skel_head.Visible=false;skel_head.Thickness=2;skel_head.Color=Color3.new(255,255,255);local skel_torso=Drawing.new("Line");skel_torso.Visible=false;skel_torso.Thickness=2;skel_torso.Color=Color3.new(255,255,255);local skel_leftarm=Drawing.new("Line");skel_leftarm.Visible=false;skel_leftarm.Thickness=2;skel_leftarm.Color=Color3.new(255,255,255);local skel_rightarm=Drawing.new("Line");skel_rightarm.Visible=false;skel_rightarm.Thickness=2;skel_rightarm.Color=Color3.new(255,255,255);local skel_leftleg=Drawing.new("Line");skel_leftleg.Visible=false;skel_leftleg.Thickness=2;skel_leftleg.Color=Color3.new(255,255,255);local skel_rightleg=Drawing.new("Line");skel_rightleg.Visible=false;skel_rightleg.Thickness=2;skel_rightleg.Color=Color3.new(255,255,255);local function update()local connection;connection=runservice.RenderStepped:Connect(function()if (workspace:FindFirstChild(character.Name) and character and character:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("Humanoid") and (character:FindFirstChild("Humanoid").Health~=0)) then local FlatIdent_74E2D=0;local character_rootpart_3d;local character_rootpart_2d;local rootpart_onscreen;while true do if (FlatIdent_74E2D==0) then character_rootpart_3d=character.HumanoidRootPart.Position;character_rootpart_2d,rootpart_onscreen=camera:WorldToViewportPoint(character_rootpart_3d);FlatIdent_74E2D=1;end if (FlatIdent_74E2D==1) then if (rootpart_onscreen and (character.Humanoid.RigType==Enum.HumanoidRigType.R6) and esp_settings.enabled) then local head_2d=camera:WorldToViewportPoint(character.Head.Position);local torso_upper_2d=camera:WorldToViewportPoint(character.Torso.Position + Vector3.new(0,1,0) );local torso_lower_2d=camera:WorldToViewportPoint(character.Torso.Position + Vector3.new(0, -1,0) );local leftarm_2d=camera:WorldToViewportPoint(character["Left Arm"].Position + Vector3.new(0, -1,0) );local rightarm_2d=camera:WorldToViewportPoint(character["Right Arm"].Position + Vector3.new(0, -1,0) );local leftleg_2d=camera:WorldToViewportPoint(character["Left Leg"].Position + Vector3.new(0, -1,0) );local rightleg_2d=camera:WorldToViewportPoint(character["Right Leg"].Position + Vector3.new(0, -1,0) );skel_head.From=Vector2.new(head_2d.X,head_2d.Y);skel_head.To=Vector2.new(torso_upper_2d.X,torso_upper_2d.Y);skel_torso.From=Vector2.new(torso_upper_2d.X,torso_upper_2d.Y);skel_torso.To=Vector2.new(torso_lower_2d.X,torso_lower_2d.Y);skel_leftarm.From=Vector2.new(torso_upper_2d.X,torso_upper_2d.Y);skel_leftarm.To=Vector2.new(leftarm_2d.X,leftarm_2d.Y);skel_rightarm.From=Vector2.new(torso_upper_2d.X,torso_upper_2d.Y);skel_rightarm.To=Vector2.new(rightarm_2d.X,rightarm_2d.Y);skel_leftleg.From=Vector2.new(torso_lower_2d.X,torso_lower_2d.Y);skel_leftleg.To=Vector2.new(leftleg_2d.X,leftleg_2d.Y);skel_rightleg.From=Vector2.new(torso_lower_2d.X,torso_lower_2d.Y);skel_rightleg.To=Vector2.new(rightleg_2d.X,rightleg_2d.Y);skel_head.Visible=esp_settings.skel;skel_torso.Visible=esp_settings.skel;skel_leftarm.Visible=esp_settings.skel;skel_rightarm.Visible=esp_settings.skel;skel_leftleg.Visible=esp_settings.skel;skel_rightleg.Visible=esp_settings.skel;else skel_head.Visible=false;skel_torso.Visible=false;skel_leftarm.Visible=false;skel_rightarm.Visible=false;skel_leftleg.Visible=false;skel_rightleg.Visible=false;end break;end end else if (player==nil) then connection:Disconnect();connection=nil;end skel_head.Visible=false;skel_torso.Visible=false;skel_leftarm.Visible=false;skel_rightarm.Visible=false;skel_leftleg.Visible=false;skel_rightleg.Visible=false;end end);end coroutine.wrap(update)();end local function playeradded(player)local FlatIdent_3B5DA=0;while true do if (0==FlatIdent_3B5DA) then if player.Character then coroutine.wrap(draw)(player,player.Character);end player.CharacterAdded:Connect(function(character)coroutine.wrap(draw)(player,character);end);break;end end end for a,b in next,entities:GetPlayers() do if (b~=localplayer) then playeradded(b);end end entities.PlayerAdded:Connect(playeradded);end);MainSection:NewButton("Hitbox Expander","ButtonInfo",function()local FlatIdent_44A85=0;local lp;local mouse;local enabled;local Target;local mt;local old;while true do if (FlatIdent_44A85==2) then old=mt.__namecall;setreadonly(mt,false);mt.__namecall=newcclosure(function(...)local FlatIdent_3566F=0;local args;while true do if (FlatIdent_3566F==0) then args={...};if (enabled and (getnamecallmethod()=="FireServer") and (args[2]=="UpdateMousePos")) then local FlatIdent_36835=0;while true do if (FlatIdent_36835==0) then args[3]=Target[_G.PART].Position + (Target[_G.PART].Velocity * _G.PRED) ;return old(unpack(args));end end end FlatIdent_3566F=1;end if (1==FlatIdent_3566F) then return old(...);end end end);game:GetService("RunService").RenderStepped:Connect(function()local FlatIdent_731A5=0;while true do if (FlatIdent_731A5==0) then for i,v in pairs(game:GetService("Players"):GetPlayers()) do local FlatIdent_34524=0;while true do if (FlatIdent_34524==0) then if ((v~=game:GetService("Players").LocalPlayer) and (v.Character.BodyEffects:FindFirstChild("K.O").Value==false)) then if (mouse.Target==v.Character.HumanoidRootPart) then Target=v.Character;enabled=true;end end if (v~=game:GetService("Players").LocalPlayer) then if (v.Character.BodyEffects:FindFirstChild("K.O").Value==false) then v.Character.HumanoidRootPart.Size=Vector3.new(20,20,20);v.Character.HumanoidRootPart.CanCollide=false;else v.Character.HumanoidRootPart.Size=Vector3.new(0.1,0.1,0.1);v.Character.HumanoidRootPart.CanCollide=false;end if v.Character:FindFirstChild("GRABBING_CONSTRAINT") then local FlatIdent_2FAFC=0;while true do if (FlatIdent_2FAFC==0) then v.Character.HumanoidRootPart.Size=Vector3.new(0.1,0.1,0.1);v.Character.HumanoidRootPart.CanCollide=false;break;end end end end break;end end end if (mouse.Target.Name=="HumanoidRootPart") then enabled=true;else enabled=false;end break;end end end);break;end if (1==FlatIdent_44A85) then mouse=lp:GetMouse();enabled=false;Target=nil;mt=getrawmetatable(game);FlatIdent_44A85=2;end if (FlatIdent_44A85==0) then _G.PART="HumanoidRootPart";_G.PRED=0.1396;_G.T=0.7;lp=game:GetService("Players").LocalPlayer;FlatIdent_44A85=1;end end end);_G.PART="HumanoidRootPart";_G.PRED=0.1396;_G.T=0.7;local lp=game:GetService("Players").LocalPlayer;local mouse=lp:GetMouse();local enabled=false;local Target;local mt=getrawmetatable(game);local old=mt.__namecall;setreadonly(mt,false);mt.__namecall=newcclosure(function(...)local FlatIdent_70B5B=0;local args;while true do if (FlatIdent_70B5B==0) then args={...};if (enabled and (getnamecallmethod()=="FireServer") and (args[2]=="UpdateMousePos")) then local FlatIdent_8DB5D=0;while true do if (FlatIdent_8DB5D==0) then args[3]=Target[_G.PART].Position + (Target[_G.PART].Velocity * _G.PRED) ;return old(unpack(args));end end end FlatIdent_70B5B=1;end if (FlatIdent_70B5B==1) then return old(...);end end end);game:GetService("RunService").RenderStepped:Connect(function()local FlatIdent_269B7=0;while true do if (FlatIdent_269B7==0) then for i,v in pairs(game:GetService("Players"):GetPlayers()) do local FlatIdent_8FFAD=0;while true do if (0==FlatIdent_8FFAD) then if ((v~=game:GetService("Players").LocalPlayer) and (v.Character.BodyEffects:FindFirstChild("K.O").Value==false)) then if (mouse.Target==v.Character.HumanoidRootPart) then Target=v.Character;enabled=true;end end if (v~=game:GetService("Players").LocalPlayer) then local FlatIdent_1D3F0=0;while true do if (FlatIdent_1D3F0==0) then if (v.Character.BodyEffects:FindFirstChild("K.O").Value==false) then v.Character.HumanoidRootPart.Size=Vector3.new(20,20,20);v.Character.HumanoidRootPart.CanCollide=false;else local FlatIdent_74323=0;while true do if (FlatIdent_74323==0) then v.Character.HumanoidRootPart.Size=Vector3.new(0.1,0.1,0.1);v.Character.HumanoidRootPart.CanCollide=false;break;end end end if v.Character:FindFirstChild("GRABBING_CONSTRAINT") then v.Character.HumanoidRootPart.Size=Vector3.new(0.1,0.1,0.1);v.Character.HumanoidRootPart.CanCollide=false;end break;end end end break;end end end if (mouse.Target.Name=="HumanoidRootPart") then enabled=true;else enabled=false;end break;end end end);
+
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Main")
+
+
+
+
+
+local Player = Window:NewTab("Player")
+local PlayerSection = Player:NewSection("Player")
+
+
+
+
+
+
+local Visuals = Window:NewTab("Visuals")
+local VisualsSection = Visuals:NewSection("Visuals")
+
+
+
+MainSection:NewButton("Silent aim", "ButtonInfo", function()
+    getgenv().fov = math.huge
+    getgenv().hitpart = "Head"
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Spoorloos/scripts/main/energy_assault_silent_aim.lua"))()
+end)
+
+
+
+
+MainSection:NewButton("WallBang", "ButtonInfo", function()
+    workspace.map.otherparts.Parent = workspace.map.bulletsgothrough
+end)
+
+
+
+
+PlayerSection:NewButton(" Undetected Speed gui", "ButtonInfo", function()
+    local s_rs = game:GetService("RunService")
+    local l_plr = game:GetService("Players").LocalPlayer
+    
+    
+    
+    local l_humrp = l_plr.Character and l_plr.Character:FindFirstChild("HumanoidRootPart")
+    local l_hum = l_plr.Character and l_plr.Character:FindFirstChild("Humanoid")
+    
+    local resp_con = l_plr.CharacterAdded:Connect(function(c) 
+        l_humrp = c:WaitForChild("HumanoidRootPart",3)
+        l_hum = c:WaitForChild("Humanoid",3)
+    end)
+    
+    local function dnec(signal) 
+        local s = {}
+        for _, con in ipairs(getconnections(signal)) do 
+            local func = con.Function
+            if (func and islclosure(func)) then
+                if (not is_synapse_function(func)) then 
+                    s[#s+1] = con
+                    con:Disable() 
+                end
+            end
+        end
+        return s
+    end
+    
+    
+    local speed_amnt = 5
+    
+    local ui = loadstring(game:HttpGet('https://raw.githubusercontent.com/topitbopit/rblx/main/ui-stuff/jeff_2.lua'))()
+    ui:SetColors('streamline')
+    
+    
+    
+    local w = ui:NewWindow('speed',250,200)
+    
+    local m = w:NewMenu('speed')
+    local t = m:NewToggle('toggle speed')
+    local s = m:NewSlider('speed amount',0.3,20,5)
+    
+    t:SetTooltip("made special for bwiz")
+    s:SetTooltip("speedhack speed")
+    
+    m:NewLabel()
+    m:NewLabel('Made by Poog foog')
+    
+    s.OnValueChanged:Connect(function(v) 
+        speed_amnt = v
+    end)
+    
+    do
+        local a,b
+        t.OnToggle:Connect(function(t)
+            if (t) then
+                a = dnec(l_humrp.Changed)
+                b = dnec(l_humrp:GetPropertyChangedSignal("CFrame"))
+                
+                s_rs:BindToRenderStep("speed",2000,function(dt)
+                    l_humrp.CFrame += l_hum.MoveDirection*dt*5*speed_amnt
+                end)
+            else
+                s_rs:UnbindFromRenderStep("speed")
+                
+                for i,v in ipairs(a) do 
+                    v:Enable()
+                end
+                for i,v in ipairs(b) do 
+                    v:Enable()
+                end
+            end
+        end)
+    end
+    
+    ui.Exiting:Connect(function() 
+        for i,v in ipairs(ui:GetAllToggles()) do 
+            if (v:IsEnabled()) then
+                v:Disable()
+            end
+        end
+        resp_con:Disconnect()
+    end)
+    
+    ui:Ready()
+end)
+
+
+
+
+
+
+
+MainSection:NewButton("Aimbot", "ButtonInfo", function()
+    local dwCamera = workspace.CurrentCamera
+    local dwRunService = game:GetService("RunService")
+    local dwUIS = game:GetService("UserInputService")
+    local dwEntities = game:GetService("Players")
+    local dwLocalPlayer = dwEntities.LocalPlayer
+    local dwMouse = dwLocalPlayer:GetMouse()
+    
+    local settings = {
+        Aimbot = true,
+        Aiming = false,
+        Aimbot_AimPart = "Head",
+        Aimbot_TeamCheck = true,
+        Aimbot_Draw_FOV = true,
+        Aimbot_FOV_Radius = 300,
+        Aimbot_FOV_Color = Color3.fromRGB(255,0,255)
+    }
+    
+    local fovcircle = Drawing.new("Circle")
+    fovcircle.Visible = settings.Aimbot_Draw_FOV
+    fovcircle.Radius = settings.Aimbot_FOV_Radius
+    fovcircle.Color = settings.Aimbot_FOV_Color
+    fovcircle.Thickness = 2
+    fovcircle.Filled = false
+    fovcircle.Transparency = 0.5
+    
+    fovcircle.Position = Vector2.new(dwCamera.ViewportSize.X / 2, dwCamera.ViewportSize.Y / 2)
+    
+    dwUIS.InputBegan:Connect(function(i)
+        if i.UserInputType == Enum.UserInputType.MouseButton2 then
+            settings.Aiming = true
+        end
+    end)
+    
+    dwUIS.InputEnded:Connect(function(i)
+        if i.UserInputType == Enum.UserInputType.MouseButton2 then
+            settings.Aiming = false
+        end
+    end)
+    
+    dwRunService.RenderStepped:Connect(function()
+        
+        local dist = math.huge
+        local closest_char = nil
+    
+        if settings.Aiming then
+    
+            for i,v in next, dwEntities:GetChildren() do 
+    
+                if v ~= dwLocalPlayer and
+                v.Character and
+                v.Character:FindFirstChild("HumanoidRootPart") and
+                v.Character:FindFirstChild("Humanoid") and
+                v.Character:FindFirstChild("Humanoid").Health > 0 then
+    
+                    if settings.Aimbot_TeamCheck == true and
+                    v.Team ~= dwLocalPlayer.Team or
+                    settings.Aimbot_TeamCheck == false then
+    
+                        local char = v.Character
+                        local char_part_pos, is_onscreen = dwCamera:WorldToViewportPoint(char[settings.Aimbot_AimPart].Position)
+    
+                        if is_onscreen then
+    
+                            local mag = (Vector2.new(dwMouse.X, dwMouse.Y) - Vector2.new(char_part_pos.X, char_part_pos.Y)).Magnitude
+    
+                            if mag < dist and mag < settings.Aimbot_FOV_Radius then
+    
+                                dist = mag
+                                closest_char = char
+    
+                            end
+                        end
+                    end
+                end
+            end
+    
+            if closest_char ~= nil and
+            closest_char:FindFirstChild("HumanoidRootPart") and
+            closest_char:FindFirstChild("Humanoid") and
+            closest_char:FindFirstChild("Humanoid").Health > 0 then
+    
+                dwCamera.CFrame = CFrame.new(dwCamera.CFrame.Position, closest_char[settings.Aimbot_AimPart].Position)
+            end
+        end
+    end)
+end)
+
+
+
+
+
+VisualsSection:NewButton("FPS boost", "ButtonInfo", function()
+    local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+    local g = game
+    local w = g.Workspace
+    local l = g.Lighting
+    local t = w.Terrain
+    t.WaterWaveSize = 0
+    t.WaterWaveSpeed = 0
+    t.WaterReflectance = 0
+    t.WaterTransparency = 0
+    l.GlobalShadows = false
+    l.FogEnd = 9e9
+    l.Brightness = 0
+    settings().Rendering.QualityLevel = "Level01"
+    for i, v in pairs(g:GetDescendants()) do
+        if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+            v.Material = "Plastic"
+            v.Reflectance = 0
+        elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+            v.Transparency = 1
+        elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+            v.Lifetime = NumberRange.new(0)
+        elseif v:IsA("Explosion") then
+            v.BlastPressure = 1
+            v.BlastRadius = 1
+        elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+            v.Enabled = false
+        elseif v:IsA("MeshPart") then
+            v.Material = "Plastic"
+            v.Reflectance = 0
+            v.TextureID = 10385902758728957
+        end
+    end
+    for i, e in pairs(l:GetChildren()) do
+        if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+            e.Enabled = false
+        end
+    end
+end)
+
+
+
+
+
+
+
+
+
+
+
+local Settings = {
+    rewrittenmain = {
+        Enabled = true,
+        Key = "q",
+        DOT = true,
+        AIRSHOT = true,
+        NOTIF = false,
+        AUTOPRED = false,
+        FOV = math.huge,
+        RESOVLER = false
+    }
+}
+
+local SelectedPart = "HumanoidRootPart"
+local Prediction = true
+local PredictionValue = 0.1225
+
+
+    local AnchorCount = 0
+    local MaxAnchor = 50
+
+    local CC = game:GetService"Workspace".CurrentCamera
+    local Plr;
+    local enabled = false
+    local accomidationfactor = 0.115
+    local mouse = game.Players.LocalPlayer:GetMouse()
+    local placemarker = Instance.new("Part", game.Workspace)
+
+    function makemarker(Parent, Adornee, Color, Size, Size2)
+        local e = Instance.new("BillboardGui", Parent)
+        e.Name = "PP"
+        e.Adornee = Adornee
+        e.Size = UDim2.new(Size, Size2, Size, Size2)
+        e.AlwaysOnTop = Settings.rewrittenmain.DOT
+        local a = Instance.new("Frame", e)
+        if Settings.rewrittenmain.DOT == true then
+        a.Size = UDim2.new(1, 0, 1, 0)
+        else
+        a.Size = UDim2.new(0, 0, 0, 0)
+        end
+        if Settings.rewrittenmain.DOT == true then
+        a.Transparency = 0
+        a.BackgroundTransparency = 0
+        else
+        a.Transparency = 1
+        a.BackgroundTransparency = 1
+        end
+        a.BackgroundColor3 = Color
+        local g = Instance.new("UICorner", a)
+        if Settings.rewrittenmain.DOT == false then
+        g.CornerRadius = UDim.new(0, 0)
+        else
+        g.CornerRadius = UDim.new(1, 1) 
+        end
+        return(e)
+    end
+
+
+
+
+
+    
+
+
+
+
+VisualsSection:NewButton("Tracers", "ButtonInfo", function()
+    _G.TeamCheck = false
+    _G.Tracers = true
+    --// local shit stuff i guess \\--
+    local lp = game.Players.LocalPlayer
+    local camera = game:GetService("Workspace").CurrentCamera
+    local CurrentCamera = workspace.CurrentCamera
+    local worldToViewportPoint = CurrentCamera.worldToViewportPoint
+    for i,v in pairs(game.Players:GetChildren()) do
+        local Tracer = Drawing.new("Line")
+        Tracer.Visible = false
+        Tracer.Color = Color3.new(255,0,255)
+        Tracer.Thickness = 2
+        Tracer.Transparency = 1
+        
+        function traces()
+            game:GetService("RunService").RenderStepped:Connect(function()
+                if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lp and v.Character.Humanoid.Health > 0 then
+                    local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                    
+                    if OnScreen then
+                        Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 2)
+                        Tracer.To = Vector2.new(Vector.X, Vector.Y)
+                        
+                        if _G.TeamCheck and v.TeamColor == lp.TeamColor then
+                            Tracer.Visible = false
+                        else
+                            Tracer.Visible = true
+                        end
+                    else
+                        Tracer.Visible = false
+                    end
+                else
+                    Tracer.Visible = false
+                end
+                if _G.Tracers == false then
+                    Tracers.Visible = false
+                end
+            end)
+        end
+        coroutine.wrap(traces)()
+    end
+    game.Players.PlayerAdded:Connect(function()
+        local Tracer = Drawing.new("Line")
+        Tracer.Visible = false
+        Tracer.Color = Color3.new(255,0,0)
+        Tracer.Thickness = 2
+        Tracer.Transparency = 2
+        
+        function traces()
+            game:GetService("RunService").RenderStepped:Connect(function()
+                if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lp and v.Character.Humanoid.Health > 0 then
+                    local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                    if OnScreen then
+                        Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 2)
+                        Tracer.To = Vector2.new(Vector.X, Vector.Y)
+                        
+                        if _G.TeamCheck and v.TeamColor == lp.TeamColor then
+                            Tracer.Visible = false
+                        else
+                            Tracer.Visible = true
+                        end
+                    else
+                        Tracer.Visible = false
+                    end
+                else
+                    Tracer.Visible = false
+                end
+                if _G.Tracers == false then
+                    Tracers.Visible = false
+                end
+            end)
+        end
+        coroutine.wrap(traces)()
+    end)
+end)
+
+
+
+
+
+
+
+
+
+
+VisualsSection:NewButton("ESP", "ButtonInfo", function()
+    game:GetService("StarterGui"):SetCore("SendNotification",{ 	
+        Title = "Made By:",  	
+        Text = "Poog Foog",
+            Icon = "",
+            Duration = 200
+        })
+        
+        --// Setting \\--
+        local settings = {
+           defaultcolor = Color3.fromRGB(255,0,255),
+           teamcheck = true, -- when true it wont show the esp box in your teammate
+           teamcolor = false, -- if false then default color(white)
+        };
+        
+        --// Service \\--
+        local runService = game:GetService("RunService");
+        local players = game:GetService("Players");
+        
+        --// Variable \\--
+        local localPlayer = players.LocalPlayer;
+        local camera = workspace.CurrentCamera;
+        
+        --// Function \\--
+        local newVector2, newColor3, newDrawing = Vector2.new, Color3.new, Drawing.new;
+        local tan, rad = math.tan, math.rad;
+        local round = function(...) local a = {}; for i,v in next, table.pack(...) do a[i] = math.round(v); end return unpack(a); end;
+        local wtvp = function(...) local a, b = camera.WorldToViewportPoint(camera, ...) return newVector2(a.X, a.Y), b, a.Z end;
+        
+        local espCache = {};
+        local function createEsp(player)
+           local drawings = {};
+           
+           drawings.box = newDrawing("Square");
+           drawings.box.Thickness = 1;
+           drawings.box.Filled = false;
+           drawings.box.Color = settings.defaultcolor;
+           drawings.box.Visible = false;
+           drawings.box.ZIndex = 2;
+        
+           drawings.boxoutline = newDrawing("Square");
+           drawings.boxoutline.Thickness = 5;
+           drawings.boxoutline.Filled = false;
+           drawings.boxoutline.Color = newColor3();
+           drawings.boxoutline.Visible = false;
+           drawings.boxoutline.ZIndex = 0.5;
+        
+           espCache[player] = drawings;
+        end
+        
+        local function removeEsp(player)
+           if rawget(espCache, player) then
+               for _, drawing in next, espCache[player] do
+                   drawing:Remove();
+               end
+               espCache[player] = nil;
+           end
+        end
+        
+        local function updateEsp(player, esp)
+           local character = player and player.Character;
+           if character then
+               local cframe = character:GetModelCFrame();
+               local position, visible, depth = wtvp(cframe.Position);
+               esp.box.Visible = visible;
+               esp.boxoutline.Visible = visible;
+        
+               if cframe and visible then
+                   local scaleFactor = 1 / (depth * tan(rad(camera.FieldOfView / 2)) * 2) * 1000;
+                   local width, height = round(4 * scaleFactor, 5 * scaleFactor);
+                   local x, y = round(position.X, position.Y);
+        
+                   esp.box.Size = newVector2(width, height);
+                   esp.box.Position = newVector2(round(x - width / 2, y - height / 2));
+                   esp.box.Color = settings.teamcolor and player.TeamColor.Color or settings.defaultcolor;
+        
+                   esp.boxoutline.Size = esp.box.Size;
+                   esp.boxoutline.Position = esp.box.Position;
+               end
+           else
+               esp.box.Visible = false;
+               esp.boxoutline.Visible = false;
+           end
+        end
+        
+        --// Main \\--
+        for _, player in next, players:GetPlayers() do
+           if player ~= localPlayer then
+               createEsp(player);
+           end
+        end
+        
+        players.PlayerAdded:Connect(function(player)
+           createEsp(player);
+        end);
+        
+        players.PlayerRemoving:Connect(function(player)
+           removeEsp(player);
+        end)
+        
+        runService:BindToRenderStep("esp", Enum.RenderPriority.Camera.Value, function()
+           for player, drawings in next, espCache do
+               if settings.teamcheck and player.Team == localPlayer.Team then
+                   continue;
+               end
+                    
+               if drawings and player ~= localPlayer then
+                   updateEsp(player, drawings);
+               end
+           end
+        end)
+end)
+
+
+
+
+
+
+
+VisualsSection:NewButton("Skeletons", "ButtonInfo", function()
+    game:GetService("StarterGui"):SetCore("SendNotification",{ 	
+        Title = "Made By:",  	
+        Text = "Poog Foog",
+            Icon = "",
+            Duration = 200
+        })
+        
+        local camera = workspace.CurrentCamera
+        local entities = game:GetService("Players")
+        local localplayer = entities.LocalPlayer 
+        local runservice = game:GetService("RunService")
+        --// Setting \\-- 
+        local esp_settings = {
+            enabled = true,
+            skel = true,
+            skel_col = Color3.fromRGB(204,0,0)
+        }
+        local function draw(player, character)
+            -- Head
+            local skel_head = Drawing.new("Line")
+            skel_head.Visible = false
+            skel_head.Thickness = 2
+            skel_head.Color = Color3.new(255,255,255)
+            -- Torso
+            local skel_torso = Drawing.new("Line")
+            skel_torso.Visible = false
+            skel_torso.Thickness = 2
+            skel_torso.Color = Color3.new(255,255,255)
+            -- LeftArm
+            local skel_leftarm = Drawing.new("Line")
+            skel_leftarm.Visible = false
+            skel_leftarm.Thickness = 2
+            skel_leftarm.Color = Color3.new(255,255,255)
+            -- RightArm
+            local skel_rightarm = Drawing.new("Line")
+            skel_rightarm.Visible = false
+            skel_rightarm.Thickness = 2
+            skel_rightarm.Color = Color3.new(255,255,255)
+            -- LeftLeg
+            local skel_leftleg = Drawing.new("Line")
+            skel_leftleg.Visible = false
+            skel_leftleg.Thickness = 2
+            skel_leftleg.Color = Color3.new(255,255,255)
+            -- RightLeg
+            local skel_rightleg = Drawing.new("Line")
+            skel_rightleg.Visible = false
+            skel_rightleg.Thickness = 2
+            skel_rightleg.Color = Color3.new(255,255,255)
+            local function update()
+                local connection
+                connection = runservice.RenderStepped:Connect(function()
+                    if workspace:FindFirstChild(character.Name) and
+                    character and 
+                    character:FindFirstChild("HumanoidRootPart") and 
+                    character:FindFirstChild("Humanoid") and 
+                    character:FindFirstChild("Humanoid").Health ~= 0 then 
+                        local character_rootpart_3d = character.HumanoidRootPart.Position
+                        local character_rootpart_2d, rootpart_onscreen = camera:WorldToViewportPoint(character_rootpart_3d)
+                        if rootpart_onscreen and character.Humanoid.RigType == Enum.HumanoidRigType.R6 and esp_settings.enabled then
+                            local head_2d = camera:WorldToViewportPoint(character.Head.Position)
+                                
+                            local torso_upper_2d = camera:WorldToViewportPoint(character.Torso.Position + Vector3.new(0,1,0))
+                            local torso_lower_2d = camera:WorldToViewportPoint(character.Torso.Position + Vector3.new(0,-1,0))
+                          
+                            local leftarm_2d = camera:WorldToViewportPoint(character["Left Arm"].Position + Vector3.new(0,-1,0))
+                            local rightarm_2d = camera:WorldToViewportPoint(character["Right Arm"].Position + Vector3.new(0,-1,0))
+                            local leftleg_2d = camera:WorldToViewportPoint(character["Left Leg"].Position + Vector3.new(0,-1,0))
+                            local rightleg_2d = camera:WorldToViewportPoint(character["Right Leg"].Position + Vector3.new(0,-1,0))
+                                
+                            skel_head.From = Vector2.new(head_2d.X, head_2d.Y)
+                            skel_head.To = Vector2.new(torso_upper_2d.X, torso_upper_2d.Y)
+        
+                            skel_torso.From = Vector2.new(torso_upper_2d.X, torso_upper_2d.Y)
+                            skel_torso.To = Vector2.new(torso_lower_2d.X, torso_lower_2d.Y)
+                            
+                            skel_leftarm.From = Vector2.new(torso_upper_2d.X, torso_upper_2d.Y)
+                            skel_leftarm.To = Vector2.new(leftarm_2d.X, leftarm_2d.Y)
+        
+                            skel_rightarm.From = Vector2.new(torso_upper_2d.X, torso_upper_2d.Y)
+                            skel_rightarm.To = Vector2.new(rightarm_2d.X, rightarm_2d.Y)
+        
+                            skel_leftleg.From = Vector2.new(torso_lower_2d.X, torso_lower_2d.Y)
+                            skel_leftleg.To = Vector2.new(leftleg_2d.X, leftleg_2d.Y)
+        
+                            skel_rightleg.From = Vector2.new(torso_lower_2d.X, torso_lower_2d.Y)
+                            skel_rightleg.To = Vector2.new(rightleg_2d.X, rightleg_2d.Y)
+        
+                            skel_head.Visible = esp_settings.skel
+                            skel_torso.Visible = esp_settings.skel
+                            skel_leftarm.Visible = esp_settings.skel
+                            skel_rightarm.Visible = esp_settings.skel
+                            skel_leftleg.Visible = esp_settings.skel
+                            skel_rightleg.Visible = esp_settings.skel
+                        else
+                            skel_head.Visible = false
+                            skel_torso.Visible = false
+                            skel_leftarm.Visible = false
+                            skel_rightarm.Visible = false
+                            skel_leftleg.Visible = false
+                            skel_rightleg.Visible = false
+                        end
+                    else
+                        if player == nil then
+                            connection:Disconnect()
+                            connection = nil 
+                        end
+                        skel_head.Visible = false
+                        skel_torso.Visible = false
+                        skel_leftarm.Visible = false
+                        skel_rightarm.Visible = false
+                        skel_leftleg.Visible = false
+                        skel_rightleg.Visible = false
+                    end
+                end)
+            end
+            coroutine.wrap(update)()
+        end
+        local function playeradded(player)
+            if player.Character then
+                coroutine.wrap(draw)(player, player.Character)
+            end
+            player.CharacterAdded:Connect(function(character)
+                coroutine.wrap(draw)(player, character)
+            end)
+        end
+        for a,b in next, entities:GetPlayers() do
+            if b ~= localplayer then
+                playeradded(b)
+            end
+        end
+        entities.PlayerAdded:Connect(playeradded)
+end)
+
+
+
+
+MainSection:NewButton("Hitbox Expander", "ButtonInfo", function()
+    _G.PART = "HumanoidRootPart"
+    _G.PRED = 0.13960
+    _G.T = 0.7
+     
+    local lp = game:GetService("Players").LocalPlayer
+    local mouse = lp:GetMouse()
+    local enabled = false
+    local Target
+    local mt = getrawmetatable(game)
+    local old = mt.__namecall
+    setreadonly(mt, false)
+    mt.__namecall =
+    newcclosure(
+    function(...)
+    local args = {...}
+    if enabled and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePos" then
+    args[3] = Target[_G.PART].Position + (Target[_G.PART].Velocity * _G.PRED)
+    return old(unpack(args))
+    end
+    return old(...)
+    end)
+     
+     
+    game:GetService("RunService").RenderStepped:Connect(function() 
+     
+    for i,v in pairs (game:GetService("Players"):GetPlayers()) do
+    if v ~= game:GetService("Players").LocalPlayer and v.Character.BodyEffects:FindFirstChild("K.O").Value == false then 
+    if mouse.Target == v.Character.HumanoidRootPart then
+        Target = v.Character
+        enabled = true
+    end
+    end
+    if v ~= game:GetService("Players").LocalPlayer then
+    if v.Character.BodyEffects:FindFirstChild("K.O").Value == false then 
+    v.Character.HumanoidRootPart.Size = Vector3.new(20, 20, 20)
+    v.Character.HumanoidRootPart.CanCollide = false
+    else
+    v.Character.HumanoidRootPart.Size = Vector3.new(0.1, 0.1, 0.1)
+    v.Character.HumanoidRootPart.CanCollide = false
+    end
+    if v.Character:FindFirstChild("GRABBING_CONSTRAINT") then
+        v.Character.HumanoidRootPart.Size = Vector3.new(0.1, 0.1, 0.1)
+        v.Character.HumanoidRootPart.CanCollide = false
+    end
+    end
+    end
+    if mouse.Target.Name == "HumanoidRootPart" then
+    enabled = true
+    else
+    enabled = false
+    end
+     
+    end) 
+    
+    
+end)
+
+
+
+
+_G.PART = "HumanoidRootPart"
+_G.PRED = 0.13960
+_G.T = 0.7
+ 
+local lp = game:GetService("Players").LocalPlayer
+local mouse = lp:GetMouse()
+local enabled = false
+local Target
+local mt = getrawmetatable(game)
+local old = mt.__namecall
+setreadonly(mt, false)
+mt.__namecall =
+newcclosure(
+function(...)
+local args = {...}
+if enabled and getnamecallmethod() == "FireServer" and args[2] == "UpdateMousePos" then
+args[3] = Target[_G.PART].Position + (Target[_G.PART].Velocity * _G.PRED)
+return old(unpack(args))
+end
+return old(...)
+end)
+ 
+ 
+game:GetService("RunService").RenderStepped:Connect(function() 
+ 
+for i,v in pairs (game:GetService("Players"):GetPlayers()) do
+if v ~= game:GetService("Players").LocalPlayer and v.Character.BodyEffects:FindFirstChild("K.O").Value == false then 
+if mouse.Target == v.Character.HumanoidRootPart then
+    Target = v.Character
+    enabled = true
+end
+end
+if v ~= game:GetService("Players").LocalPlayer then
+if v.Character.BodyEffects:FindFirstChild("K.O").Value == false then 
+v.Character.HumanoidRootPart.Size = Vector3.new(20, 20, 20)
+v.Character.HumanoidRootPart.CanCollide = false
+else
+v.Character.HumanoidRootPart.Size = Vector3.new(0.1, 0.1, 0.1)
+v.Character.HumanoidRootPart.CanCollide = false
+end
+if v.Character:FindFirstChild("GRABBING_CONSTRAINT") then
+    v.Character.HumanoidRootPart.Size = Vector3.new(0.1, 0.1, 0.1)
+    v.Character.HumanoidRootPart.CanCollide = false
+end
+end
+end
+if mouse.Target.Name == "HumanoidRootPart" then
+enabled = true
+else
+enabled = false
+end
+ 
+end) 
